@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="text-2xl font-bold text-emerald-400 mb-4">ComfortCare</h3>
+            <h3 className="text-2xl font-bold text-emerald-400 mb-4">KemCare</h3>
             <p className="text-gray-400 leading-relaxed">
               Providing compassionate care and professional cleaning services with dedication, respect, and excellence.
             </p>
