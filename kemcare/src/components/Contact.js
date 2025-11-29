@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 
 // Use environment variable for backend URL, fallback to localhost
-const API_URL = process.env.REACT_APP_API_URL || 'https://kem-care-fd8v.onrender.com/contact';
+const API_URL = process.env.REACT_APP_API_URL || 'https://kem-care-fd8v.onrender.com/';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ export default function Contact() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'success' | 'error'
+  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle'  'success' | 'error'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
