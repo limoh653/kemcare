@@ -42,12 +42,12 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button
+                {/* <button
                   onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
                   className="hover:text-emerald-400 transition-colors"
                 >
                   Testimonials
-                </button>
+                </button> */}
               </li>
             </ul>
           </div>
@@ -58,15 +58,15 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a href="tel:+15551234567" className="hover:text-emerald-400 transition-colors">
-                  (555) 123-4567
+                  +1 (204) 333-4090
                 </a>
               </li>
               <li>
                 <a href="mailto:info@comfortcare.com" className="hover:text-emerald-400 transition-colors">
-                  info@comfortcare.com
+                  jeronokemboi99@gmail.com
                 </a>
               </li>
-              <li>Greater Metro Area</li>
+              <li>77 Eugine Street, winnipeg, MB R2H OX6</li>
             </ul>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function Footer() {
             Made with <Heart className="text-red-500 fill-red-500" size={16} /> for those we care about
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            &copy; {new Date().getFullYear()} ComfortCare. All rights reserved.
+            &copy; {new Date().getFullYear()} KemCare. All rights reserved.
           </p>
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            {['home','about','services','testimonials'].map(section => (
+            {['home','about','services',].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -61,7 +61,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden pb-4 bg-white/95 backdrop-blur-sm shadow-md rounded-b-xl mt-2">
             <div className="flex flex-col space-y-3 px-4 py-2">
-              {['home','about','services','testimonials'].map(section => (
+              {['home','about','services',].map(section => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}

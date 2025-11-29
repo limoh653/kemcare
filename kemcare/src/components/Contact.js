@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 
+// Use environment variable for backend URL, fallback to localhost
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,30 +12,40 @@ export default function Contact() {
     service: '',
     message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'success' | 'error'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission
-    setTimeout(() => {
-      const success = Math.random() > 0.1; // 90% chance of success
-      if (success) {
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       } else {
         setSubmitStatus('error');
       }
-      setIsSubmitting(false);
-    }, 1000);
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus('error');
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
           <div className="w-24 h-1 bg-emerald-600 mx-auto mb-6"></div>
@@ -42,11 +55,12 @@ export default function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Contact Info */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
 
             <div className="space-y-6 mb-8">
+              {/* Phone */}
               <a
                 href="tel:+15551234567"
                 className="flex items-start p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow group"
@@ -56,22 +70,24 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                  <p className="text-emerald-600 font-semibold text-lg">(555) 123-4567</p>
+                  <p className="text-emerald-600 font-semibold text-lg">(204) 333-4090</p>
                   <p className="text-gray-600 text-sm">Click to call</p>
                 </div>
               </a>
 
+              {/* Email */}
               <div className="flex items-start p-4 bg-white rounded-xl shadow-md">
                 <div className="bg-teal-100 p-3 rounded-lg">
                   <Mail className="text-teal-600" size={24} />
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-700">info@comfortcare.com</p>
+                  <p className="text-gray-700">jeronokemboi99@gmail.com</p>
                   <p className="text-gray-600 text-sm">We'll respond within 24 hours</p>
                 </div>
               </div>
 
+              {/* Service Area */}
               <div className="flex items-start p-4 bg-white rounded-xl shadow-md">
                 <div className="bg-cyan-100 p-3 rounded-lg">
                   <MapPin className="text-cyan-600" size={24} />
@@ -83,6 +99,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Hours */}
               <div className="flex items-start p-4 bg-white rounded-xl shadow-md">
                 <div className="bg-emerald-100 p-3 rounded-lg">
                   <Clock className="text-emerald-600" size={24} />
@@ -99,6 +116,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Immediate Assistance */}
             <div className="bg-gradient-to-br from-emerald-600 to-teal-600 p-6 rounded-xl text-white">
               <h4 className="font-bold text-xl mb-2">Need Immediate Assistance?</h4>
               <p className="mb-4">Our team is ready to help you right away.</p>
@@ -129,6 +147,7 @@ export default function Contact() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                     Full Name *
@@ -144,6 +163,7 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                     Email Address *
@@ -159,6 +179,7 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                     Phone Number *
@@ -174,6 +195,7 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Service */}
                 <div>
                   <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
                     Service Interest *
@@ -198,6 +220,7 @@ export default function Contact() {
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
                     Message *
@@ -213,6 +236,7 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Submit */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
