@@ -18,16 +18,24 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Enable CORS for frontend on port 3000
-    CORS(app, origins=["https://kem-care.onrender.com"])
+    # Enable CORS for local and deployed frontend
+    CORS(
+        app,
+        resources={r"/*": {"origins": [
+            "http://localhost:3000",
+            "https://kem-care.onrender.com"
+        ]}},
+        supports_credentials=True,
+        methods=["GET", "POST", "OPTIONS"]
+    )
 
     # Load environment variables from .env
     load_dotenv()
 
     # Initialize Resend with your API key from .env
-    resend.api_key = os.getenv("RESEND_API_KEY")  # <-- use the env variable name
+    resend.api_key = os.getenv("RESEND_API_KEY")
 
-    # Debug print to verify API key is loaded (remove in production)
+    # Debug print to verify API key is loaded
     print("Resend API Key Loaded:", resend.api_key is not None)
 
     # Register routes
