@@ -19,7 +19,7 @@ def create_app():
     migrate.init_app(app, db)
 
     # Enable CORS for frontend on port 3000
-    CORS(app, origins=["http://localhost:3000"])
+    CORS(app, origins=["https://kem-care.onrender.com"])
 
     # Load environment variables from .env
     load_dotenv()
