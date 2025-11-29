@@ -42,12 +42,7 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                {/* <button
-                  onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Testimonials
-                </button> */}
+                {/*  */}
               </li>
             </ul>
           </div>

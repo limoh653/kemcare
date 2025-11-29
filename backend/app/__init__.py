@@ -23,7 +23,7 @@ def create_app():
         app,
         resources={r"/*": {"origins": [
             "http://localhost:3000",
-            "https://kem-care.onrender.com"
+            "https://kemcare.onrender.com"
         ]}},
         supports_credentials=True,
         methods=["GET", "POST", "OPTIONS"]
