@@ -3,7 +3,7 @@ from . import db
 from .models import ContactMessage
 import resend
 import os
-import traceback  # <-- import traceback for detailed error printing
+import traceback  # for detailed error printing
 
 bp = Blueprint("routes", __name__)
 
@@ -14,7 +14,7 @@ def home():
 
 
 # --- Handle Contact Form Submission ---
-@bp.route("/contact", methods=["POST"])
+@bp.route("/api/contact", methods=["POST"])
 def handle_contact():
     data = request.get_json()
 
