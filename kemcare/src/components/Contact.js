@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 
 // Use environment variable for backend URL, fallback to localhost
-const API_URL = process.env.REACT_APP_API_URL || 'https://kem-care-fd8v.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'https://kem-care-fd8v.onrender.com/api/contact';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
